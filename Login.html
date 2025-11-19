@@ -3,105 +3,198 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registar</title>
+  <title>Registrar</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: "Poppins", sans-serif;
-      background: linear-gradient(135deg, #3e77db, #0bf131);
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    .caixa {
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
       background: white;
-      padding: 35px 25px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-      text-align: center;
-      width: 300px;
+      padding: 45px 35px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      width: 90%;
+      max-width: 420px;
+      animation: fadeInUp 0.8s ease-out;
     }
 
     h1 {
-      color: #444;
+      color: #222;
+      font-size: 28px;
+      margin-bottom: 25px;
+      font-weight: 600;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .input-group {
+      margin-bottom: 18px;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
     }
 
     input {
-      width: 90%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #ddd;
       border-radius: 8px;
-      font-size: 14px;
+      font-size: 16px;
+      transition: all 0.3s ease;
       outline: none;
     }
 
     input:focus {
-      border-color: #2575FC;
+      border-color: #007bff;
+      box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.15);
+      transform: translateY(-2px);
     }
 
     button {
-      background: #2575FC;
+      background: linear-gradient(135deg, #28a745, #218838);
       color: white;
       border: none;
-      padding: 10px 20px;
+      padding: 16px;
+      width: 100%;
+      font-size: 18px;
+      font-weight: 600;
       border-radius: 8px;
       cursor: pointer;
       margin-top: 10px;
-      transition: 0.3s;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+      animation: fadeInUp 0.8s ease-out 0.6s both;
     }
 
     button:hover {
-      background: #6A11CB;
-      transform: scale(1.05);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(40, 167, 69, 0.4);
     }
 
     #mensagem {
-      margin-top: 15px;
-      color: #444;
+      margin-top: 18px;
+      font-size: 15px;
+      min-height: 22px;
+      animation: fadeInUp 0.8s ease-out 0.7s both;
+    }
+
+    .erro {
+      color: #e74c3c;
+      font-weight: 500;
+    }
+
+    .sucesso {
+      color: #27ae60;
+      font-weight: 500;
+    }
+
+    .login-link {
+      margin-top: 20px;
+      animation: fadeInUp 0.8s ease-out 0.8s both;
+    }
+
+    .login-link a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    .login-link a:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 35px 25px;
+        margin: 20px;
+      }
+      h1 { font-size: 26px; }
     }
   </style>
 </head>
 <body>
-    <div class="caixa">
-      
-    <h1>Registro</h1>
 
-    <input type="text" id="usuario" placeholder="Usuário"><br><br>
-    <input type="password" id="senha" placeholder="Senha"><br><br>
-    <button onclick="registrar()">Registrar</button>
-    <p><a href="index.html">Já tem uma conta? Entrar</a></p>
+  <div class="container">
+    <h1>Registrar</h1>
+
+    <div class="input-group">
+      <input type="text" id="usuario" placeholder="Nome de usuário" autocomplete="username">
+    </div>
+
+    <div class="input-group">
+      <input type="password" id="senha" placeholder="Senha" autocomplete="new-password">
+    </div>
+
+    <button onclick="registrar()">Criar Conta</button>
 
     <p id="mensagem"></p>
+
+    <div class="login-link">
+      <p>Já tem conta? <a href="entrar.html">Entrar agora</a></p>
     </div>
+  </div>
+
   <script>
-  function registrar() {
-   const usuario = document.getElementById("usuario").value.trim();
-   const senha = document.getElementById("senha").value.trim();
+    function registrar() {
+      const usuario = document.getElementById("usuario").value.trim();
+      const senha = document.getElementById("senha").value;
+      const mensagem = document.getElementById("mensagem");
 
-   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || {};
+      mensagem.className = "";
+      mensagem.innerText = "";
 
-   if (!usuario || !senha) {
-     document.getElementById("mensagem").innerText = "Preencha usuário e senha!";
-     return;
-   }
+      if (!usuario || !senha) {
+        mensagem.className = "erro";
+        mensagem.innerText = "⚠ Preencha usuário e senha!";
+        return;
+      }
 
-   if (usuarios[usuario]) {
-     document.getElementById("mensagem").innerText = "Esse nome já está em uso!";
-     return;
-   }
+      const usuarios = JSON.parse(localStorage.getItem("usuarios")) || {};
 
-   usuarios[usuario] = { senha: senha };
+      if (usuarios[usuario]) {
+        mensagem.className = "erro";
+        mensagem.innerText = "✕ Esse nome de usuário já está em uso!";
+        return;
+      }
 
-   localStorage.setItem("usuarios", JSON.stringify(usuarios));
+      // Registra o usuário
+      usuarios[usuario] = { senha: senha };
+      localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-   document.getElementById("mensagem").innerText = "Usuário registrado com sucesso!";
+      // Mensagem de sucesso + redirecionamento
+      mensagem.className = "sucesso";
+      mensagem.innerText = "✓ Registrado com sucesso! Redirecionando...";
 
-   window.location.href = "index.html"
-}
+      setTimeout(() => {
+        localStorage.setItem("usuarioLogado", usuario);
+        window.location.href = "index.html";  // ou "Home.html", conforme seu arquivo
+      }, 1200);
+    }
 
+    // Aperta Enter e registra
+    document.addEventListener("keypress", e => {
+      if (e.key === "Enter") registrar();
+    });
   </script>
+
 </body>
 </html>
