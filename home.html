@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprenda Programação</title>
+    <style>
+        /* Reset e base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animações de entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: brightness(1) drop-shadow(0 0 5px rgba(255, 100, 0, 0)); }
+            50% { filter: brightness(1.1) drop-shadow(0 0 15px rgba(255, 100, 0, 0.6)); }
+        }
+
+        /* Container com animação */
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            width: 90%;
+            animation: fadeInUp 0.8s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Título animado */
+        h1 {
+            color: #222;
+            font-size: 28px;
+            margin: 20px 0 15px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+            font-weight: 600;
+        }
+
+        /* Parágrafo com delay */
+        p {
+            color: #555;
+            font-size: 17px;
+            margin-bottom: 25px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        /* Botões com animação */
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.6s;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Cores específicas */
+        #python-btn {
+            background-color: #28a745;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            animation: pulse 2s infinite ease-in-out 1s;
+        }
+
+        #python-btn:hover {
+            background-color: #218838;
+            box-shadow: 0 10px 30px rgba(40, 167, 69, 0.4);
+        }
+
+        #js-btn {
+            background-color: #ffc107;
+            color: #212529;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+            animation: pulse 2s infinite ease-in-out 1.3s;
+        }
+
+        #js-btn:hover {
+            background-color: #e0a800;
+            box-shadow: 0 10px 30px rgba(255, 193, 7, 0.4);
+        }
+
+        /* Imagem com animação de brilho (fogo) */
+        .hero-img {
+            display: block;
+            margin: 0 auto 10px;
+            animation: fadeInUp 0.8s ease-out 0.1s both, glow 3s infinite ease-in-out;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255, 100, 0, 0.3);
+        }
+
+        /* Links de navegação */
+        .nav-link {
+            position: absolute;
+            top: 20px;
+            color: #444;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-link:hover {
+            color: #007bff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        /* Responsivo */
+        @media (max-width: 600px) {
+            .container { padding: 30px 20px; }
+            h1 { font-size: 24px; }
+            button { font-size: 16px; padding: 14px 20px; }
+            .nav-link { font-size: 16px; top: 15px; padding: 6px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegação animada -->
+    <a href="links.html" class="nav-link" style="left: 20px;">Recursos</a>
+    <a href="Creditos.html" class="nav-link" style="right: 20px;">Créditos</a>
+
+    <div class="container">
+        <!-- GIF com animação de fogo brilhante -->
+        <img src="https://images.cooltext.com/5744878.gif" width="387" height="94" alt="Hero Code" class="hero-img" />
+
+        <h1>Bem-vindo ao Site de Aprendizado de Programação</h1>
+        <p>Escolha uma linguagem para começar a aprender (recomendamos <strong>Python</strong> para iniciantes):</p>
+
+        <div class="buttons">
+            <button id="python-btn" onclick="window.location.href='Python.html';">
+                Aprender Python
+            </button>
+            <button id="js-btn" onclick="window.location.href='Javascript.html';">
+                Aprender JavaScript
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>

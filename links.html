@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos Gratuitos</title>
+    <style>
+        /* Reset e base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animações de entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Container com animação */
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            max-width: 800px;
+            width: 90%;
+            animation: fadeInUp 0.8s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Título animado */
+        h1 {
+            color: #222;
+            font-size: 28px;
+            margin: 20px 0 15px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+            font-weight: 600;
+        }
+
+        /* Parágrafo com delay */
+        p {
+            color: #555;
+            font-size: 17px;
+            margin-bottom: 25px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        /* Botões com animação */
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+            min-width: 250px;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.6s;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Cores específicas */
+        #python-btn {
+            background-color: #28a745;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            animation: pulse 2s infinite ease-in-out 1s;
+        }
+
+        #python-btn:hover {
+            background-color: #218838;
+            box-shadow: 0 10px 30px rgba(40, 167, 69, 0.4);
+        }
+
+        #js-btn {
+            background-color: #ffc107;
+            color: #212529;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+            animation: pulse 2s infinite ease-in-out 1.3s;
+        }
+
+        #js-btn:hover {
+            background-color: #e0a800;
+            box-shadow: 0 10px 30px rgba(255, 193, 7, 0.4);
+        }
+
+        /* Links dentro dos botões */
+        button a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Link de voltar com animação */
+        .back-link {
+            margin-top: 30px;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+
+        .back-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+            transform: translateY(-2px);
+        }
+
+        /* Links de navegação */
+        .nav-link {
+            position: absolute;
+            top: 20px;
+            color: #444;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-link:hover {
+            color: #007bff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        /* Responsivo */
+        @media (max-width: 600px) {
+            .container { padding: 30px 20px; }
+            h1 { font-size: 24px; }
+            button { font-size: 16px; padding: 14px 20px; min-width: 100%; }
+            .nav-link { font-size: 16px; top: 15px; padding: 6px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegação animada -->
+    <a href="index.html" class="nav-link" style="left: 20px;">Home</a>
+    <a href="conta.html" class="nav-link" style="right: 20px;">Conta</a>
+
+    <div class="container">
+        <h1>Recursos Gratuitos para Aprendizado</h1>
+        <p>Confira os melhores sites oficiais e gratuitos para aprender Python e JavaScript:</p>
+
+        <div class="buttons">
+            <button id="python-btn">
+                <a href="https://www.python.org/" target="_blank" rel="noopener">
+                    Site Oficial do Python
+                </a>
+            </button>
+
+            <button id="js-btn">
+                <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank" rel="noopener">
+                    Documentação JavaScript (MDN)
+                </a>
+            </button>
+
+            <button>
+                <a href="https://docs.python.org/pt-br/3/tutorial/index.html" target="_blank" rel="noopener">
+                    Tutorial Oficial do Python (PT-BR)
+                </a>
+            </button>
+
+            <button>
+                <a href="https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/" target="_blank" rel="noopener">
+                    Curso Gratuito JS - freeCodeCamp
+                </a>
+            </button>
+
+            <button>
+                <a href="https://www.w3schools.com/python/" target="_blank" rel="noopener">
+                    Python no W3Schools
+                </a>
+            </button>
+
+            <button>
+                <a href="https://www.w3schools.com/js/" target="_blank" rel="noopener">
+                    JavaScript no W3Schools
+                </a>
+            </button>
+        </div>
+
+        <div class="back-link">
+            <a href="index.html">Voltar para a Home</a>
+        </div>
+    </div>
+
+</body>
+</html>

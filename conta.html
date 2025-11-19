@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #3e77db, #0bf131);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh; /* Alterado para min-height para garantir espaço */
+      margin: 0;
+      padding: 20px; /* Adicionado padding para evitar colar nas bordas em telas pequenas */
+      box-sizing: border-box;
+    }
+
+    .caixa {
+      background: white;
+      padding: 40px 30px; /* Aumentado o padding interno */
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 100%;
+      max-width: 400px; /* Largura máxima para manter responsivo e centralizado */
+    }
+
+    h1 {
+      color: #444;
+      margin: 0 0 20px 0;
+      font-size: 28px;
+    }
+
+    p {
+      color: #444;
+      font-size: 16px;
+      margin: 0 0 30px 0;
+    }
+
+    button {
+      background: #2575FC;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 12px 0;
+      transition: 0.3s;
+      display: block;
+      width: 100%;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    button:hover {
+      background: #6A11CB;
+      transform: translateY(-2px);
+    }
+
+    #logout-btn {
+      background: #dc3545;
+    }
+
+    #logout-btn:hover {
+      background: #c82333;
+    }
+
+    #creditos-btn {
+      background: #6c757d;
+    }
+
+    #creditos-btn:hover {
+      background: #5a6268;
+    }
+  </style>
+</head>
+<body>
+  <div class="caixa">
+    <h1>Perfil</h1>
+    <p id="info-usuario"></p>
+    <button id="creditos-btn" onclick="window.location.href='Creditos.html';">Créditos / Criadores</button>
+    <button id="logout-btn" onclick="logout()">Sair</button>
+  </div>
+
+  <script>
+    const usuarioLogado = localStorage.getItem("usuarioLogado");
+
+    if (!usuarioLogado) {
+      window.location.href = "Entrar.html";
+    } else {
+      document.getElementById("info-usuario").innerText = `Bem-vindo, ${usuarioLogado}!`;
+    }
+
+    function logout() {
+      localStorage.removeItem("usuarioLogado");
+      window.location.href = "Home.html";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprenda JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            font-family: monospace;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .output {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            min-height: 50px;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+        .back-btn {
+            background-color: #007bff;
+            margin-bottom: 20px;
+        }
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+        .loading {
+            color: #007bff;
+            font-style: italic;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+        .quiz-question {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        .multiple-choice label {
+            display: block;
+            margin: 5px 0;
+        }
+        #quiz-result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            color: #155724;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Curso Completo de JavaScript</h1>
+        <p>Aprenda JavaScript diretamente no navegador! Execute códigos, faça exercícios e responda ao questionário final de tentativa única.</p>
+        <button class="back-btn" onclick="window.location.href='home.html';">Voltar à Home</button>
+
+        <h2>1. Introdução ao JavaScript</h2>
+        <p>JavaScript é a linguagem da web. Use <code>console.log()</code> para imprimir.</p>
+        <p>Exemplo:</p>
+        <pre><code>console.log("Olá, Mundo!");</code></pre>
+        <h3>Atividade: Imprima seu nome</h3>
+        <textarea id="code1">console.log("Seu Nome Aqui");</textarea>
+        <button onclick="runJSCode('code1', 'output1')">Executar</button>
+        <div id="output1" class="output"></div>
+
+        <h2>2. Variáveis e Tipos</h2>
+        <p>Use <code>let</code>, <code>const</code> ou <code>var</code>.</p>
+        <p>Exemplo:</p>
+        <pre><code>let nome = "João";
+let idade = 25;
+console.log(`${nome} tem ${idade} anos.`);</code></pre>
+        <h3>Atividade: Crie suas variáveis</h3>
+        <textarea id="code2">let nome = "Seu Nome";
+let idade = 20;
+console.log(`${nome} tem ${idade} anos.`);</textarea>
+        <button onclick="runJSCode('code2', 'output2')">Executar</button>
+        <div id="output2" class="output"></div>
+
+        <h2>3. Estruturas de Controle (Loop for)</h2>
+        <p>Exemplo:</p>
+        <pre><code>for (let i = 1; i <= 5; i++) {
+    console.log(i);
+}</code></pre>
+        <h3>Atividade: Imprima de 1 a 10</h3>
+        <textarea id="code3">for (let i = 1; i <= 10; i++) {
+    console.log(i);
+}</textarea>
+        <button onclick="runJSCode('code3', 'output3')">Executar</button>
+        <div id="output3" class="output"></div>
+
+        <h2>4. Funções</h2>
+        <p>Defina com <code>function</code> ou arrow function.</p>
+        <p>Exemplo:</p>
+        <pre><code>function soma(a, b) {
+    return a + b;
+}
+console.log(soma(3, 5));</code></pre>
+        <h3>Atividade: Função de saudação</h3>
+        <textarea id="code4">function saudacao(nome) {
+    console.log(`Olá, ${nome}!`);
+}
+saudacao("Mundo");</textarea>
+        <button onclick="runJSCode('code4', 'output4')">Executar</button>
+        <div id="output4" class="output"></div>
+
+        <h2>5. Arrays</h2>
+        <p>Use <code>push()</code> para adicionar.</p>
+        <p>Exemplo:</p>
+        <pre><code>let frutas = ["maçã", "banana"];
+frutas.push("laranja");
+console.log(frutas);</code></pre>
+        <h3>Atividade: Sua lista</h3>
+        <textarea id="code5">let animais = ["gato", "cachorro"];
+animais.push("pássaro");
+console.log(animais);</textarea>
+        <button onclick="runJSCode('code5', 'output5')">Executar</button>
+        <div id="output5" class="output"></div>
+
+        <h2>6. Objetos</h2>
+        <p>Objetos armazenam dados com chaves.</p>
+        <p>Exemplo:</p>
+        <pre><code>let pessoa = {
+    nome: "Ana",
+    idade: 30
+};
+console.log(pessoa.nome);</code></pre>
+        <h3>Atividade: Crie um objeto Carro</h3>
+        <textarea id="code6">let carro = {
+    marca: "Toyota",
+    cor: "azul"
+};
+console.log(`Carro: ${carro.marca} ${carro.cor}`);</textarea>
+        <button onclick="runJSCode('code6', 'output6')">Executar</button>
+        <div id="output6" class="output"></div>
+
+        <h2>7. DOM (Manipulação da Página)</h2>
+        <p>Use <code>document.getElementById()</code>.</p>
+        <p>Exemplo:</p>
+        <pre><code>document.body.style.backgroundColor = "lightblue";</code></pre>
+        <h3>Atividade: Mude a cor do fundo</h3>
+        <textarea id="code7">document.body.style.backgroundColor = "lightgreen";</textarea>
+        <button onclick="runJSCode('code7', 'output7')">Executar</button>
+        <div id="output7" class="output"></div>
+
+        <h2>8. Eventos</h2>
+        <p>Use <code>addEventListener</code>.</p>
+        <p>Exemplo:</p>
+        <pre><code>console.log("Exemplo de evento: Clique em algum lugar para ver no console do navegador.");</code></pre>
+        <h3>Atividade: Log ao clicar (resultado no console do navegador, não aqui)</h3>
+        <p>Nota: Este código adiciona um listener de clique que imprime no console real do navegador (pressione F12 para ver). Para evitar interferências, não usamos alert(). Teste clicando na página após executar.</p>
+        <textarea id="code8">document.body.addEventListener("click", () => {
+    console.log("Você clicou!");
+});</textarea>
+        <button onclick="runJSCode('code8', 'output8')">Executar</button>
+        <div id="output8" class="output"></div>
+
+        <h2>9. Questionário Final</h2>
+        <p>Responda tudo e clique em "Enviar Respostas" para ver sua pontuação. Sem feedbacks parciais ou novas tentativas.</p>
+
+        <div class="quiz-question">
+            <h3>Pergunta 1: Qual é a saída de console.log("Olá" + " Mundo!")?</h3>
+            <div class="multiple-choice">
+                <label><input type="radio" name="q1" value="a"> a) OláMundo!</label>
+                <label><input type="radio" name="q1" value="b"> b) Olá Mundo!</label>
+                <label><input type="radio" name="q1" value="c"> c) Erro</label>
+            </div>
+        </div>
+
+        <div class="quiz-question">
+            <h3>Pergunta 2: Código - Escreva uma função que retorne 5 (imprima o resultado)</h3>
+            <textarea id="quiz-code1">function soma() {
+    // Seu código aqui
+}
+console.log(soma());</textarea>
+        </div>
+
+        <div class="quiz-question">
+            <h3>Pergunta 3: O que faz array.push()?</h3>
+            <div class="multiple-choice">
+                <label><input type="radio" name="q3" value="a"> a) Remove o último item</label>
+                <label><input type="radio" name="q3" value="b"> b) Adiciona no final</label>
+                <label><input type="radio" name="q3" value="c"> c) Ordena o array</label>
+            </div>
+        </div>
+
+        <div class="quiz-question">
+            <h3>Pergunta 4: Código - Crie um objeto com nome e idade, imprima o nome</h3>
+            <textarea id="quiz-code2">let pessoa = {
+    // Seu código aqui
+};
+console.log(pessoa.nome);</textarea>
+        </div>
+
+        <div class="quiz-question">
+            <h3>Pergunta 5: Como selecionar um elemento por ID?</h3>
+            <div class="multiple-choice">
+                <label><input type="radio" name="q5" value="a"> a) document.querySelector()</label>
+                <label><input type="radio" name="q5" value="b"> b) document.getElementById()</label>
+                <label><input type="radio" name="q5" value="c"> c) document.find()</label>
+            </div>
+        </div>
+
+        <button id="submit-quiz" onclick="submitQuiz()">Enviar Respostas</button>
+        <div id="quiz-result"></div>
+
+        <p><strong>Parabéns!</strong> Envie suas respostas para ver o resultado.</p>
+    </div>
+
+    <script>
+        // Captura de console.log
+        const originalLog = console.log;
+        let capturedOutput = '';
+
+        function captureConsole() {
+            console.log = function(...args) {
+                capturedOutput += args.map(arg => String(arg)).join(' ') + '\n';
+                originalLog.apply(console, args);
+            };
+        }
+
+        function restoreConsole() {
+            console.log = originalLog;
+        }
+
+        function runJSCode(codeId, outputId) {
+            const code = document.getElementById(codeId).value;
+            const outputDiv = document.getElementById(outputId);
+            outputDiv.innerHTML = '<span class="loading">Executando...</span>';
+
+            capturedOutput = '';
+            captureConsole();
+
+            try {
+                // Executa o código do usuário
+                new Function(code)();
+
+                if (capturedOutput.trim()) {
+                    outputDiv.innerHTML = capturedOutput.replace(/\n/g, '<br>');
+                } else {
+                    outputDiv.innerHTML = '<em>(Nenhuma saída)</em>';
+                }
+            } catch (err) {
+                outputDiv.innerHTML = '<span class="error">Erro: ' + err.message + '</span>';
+            } finally {
+                restoreConsole();
+            }
+        }
+
+        function runQuizCode(codeId) {
+            const code = document.getElementById(codeId).value;
+            capturedOutput = '';
+            captureConsole();
+
+            try {
+                new Function(code)();
+                return capturedOutput.trim();
+            } catch (err) {
+                return null;
+            } finally {
+                restoreConsole();
+            }
+        }
+
+        function submitQuiz() {
+            const submitBtn = document.getElementById('submit-quiz');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Avaliando...';
+
+            let score = 0;
+            const total = 5;
+
+            // Pergunta 1
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            if (q1 && q1.value === 'b') score++;
+
+            // Pergunta 2
+            const q2Output = runQuizCode('quiz-code1');
+            if (q2Output === '5') score++;
+
+            // Pergunta 3
+            const q3 = document.querySelector('input[name="q3"]:checked');
+            if (q3 && q3.value === 'b') score++;
+
+            // Pergunta 4
+            const q4Output = runQuizCode('quiz-code2');
+            if (q4Output && q4Output.length > 0) score++; // Aceita qualquer nome impresso
+
+            // Pergunta 5
+            const q5 = document.querySelector('input[name="q5"]:checked');
+            if (q5 && q5.value === 'b') score++;
+
+            const resultDiv = document.getElementById('quiz-result');
+            resultDiv.innerHTML = `Você acertou ${score} de ${total} perguntas!`;
+
+            submitBtn.textContent = 'Resultado Enviado';
+        }
+    </script>
+</body>
+</html>

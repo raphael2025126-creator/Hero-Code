@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprenda Python</title>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            font-family: monospace;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .output {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            min-height: 50px;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+        .back-btn {
+            background-color: #007bff;
+            margin-bottom: 20px;
+        }
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+        .loading {
+            color: #007bff;
+            font-style: italic;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .quiz-question {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        .multiple-choice label {
+            display: block;
+            margin: 5px 0;
+        }
+        #quiz-result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            color: #155724;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Curso Completo de Python</h1>
+        <p>Estude python e teste seus conhecimentos em um questionário. </p>
+        <p><strong>Dica:</strong> Clique em "Carregar Python" na primeira vez (demora ~10s). Depois, execute os códigos!</p>
+        <button class="back-btn" onclick="window.location.href='home.html';">Voltar à Home</button>
+
+        <div id="init-section">
+            <button id="init-btn" onclick="initializePyodide()">Carregar Python (Primeira vez só)</button>
+            <p id="status" class="loading">Clique para carregar o interpretador Python...</p>
+        </div>
+
+        <h2>1. Introdução ao Python</h2>
+        <p>Python é uma linguagem simples e poderosa.</p>
+        <p>Exemplo:</p>
+        <pre><code>print("Olá, Mundo!")</code></pre>
+        <h3>Atividade: Imprima seu nome</h3>
+        <textarea id="code1">print("Seu Nome Aqui")</textarea>
+        <button id="run1" onclick="runCode('code1', 'output1')" disabled>Executar</button>
+        <div id="output1" class="output"></div>
+
+        <h2>2. Variáveis e Tipos</h2>
+        <p>Exemplo:</p>
+        <pre><code>nome = "João"
+idade = 25
+print(f"{nome} tem {idade} anos.")</code></pre>
+        <h3>Atividade: Crie suas variáveis</h3>
+        <textarea id="code2">nome = "Seu Nome"
+idade = 20
+print(f"{nome} tem {idade} anos.")</textarea>
+        <button id="run2" onclick="runCode('code2', 'output2')" disabled>Executar</button>
+        <div id="output2" class="output"></div>
+
+        <h2>3. Estruturas de Controle (Loop for)</h2>
+        <p>Exemplo de loop:</p>
+        <pre><code>for i in range(1, 6):
+    print(i)</code></pre>
+        <h3>Atividade: Imprima de 1 a 10</h3>
+        <textarea id="code3">for i in range(1, 11):
+    print(i)</textarea>
+        <button id="run3" onclick="runCode('code3', 'output3')" disabled>Executar</button>
+        <div id="output3" class="output"></div>
+
+        <h2>4. Funções</h2>
+        <p>Exemplo:</p>
+        <pre><code>def soma(a, b):
+    return a + b
+
+print(soma(3, 5))</code></pre>
+        <h3>Atividade: Função de saudação</h3>
+        <textarea id="code4">def saudacao(nome):
+    print(f"Olá, {nome}!")
+
+saudacao("Mundo")</textarea>
+        <button id="run4" onclick="runCode('code4', 'output4')" disabled>Executar</button>
+        <div id="output4" class="output"></div>
+
+        <h2>5. Listas</h2>
+        <p>Exemplo:</p>
+        <pre><code>frutas = ["maçã", "banana"]
+frutas.append("laranja")
+print(frutas)</code></pre>
+        <h3>Atividade: Sua lista</h3>
+        <textarea id="code5">animais = ["gato", "cachorro"]
+animais.append("pássaro")
+print(animais)</textarea>
+        <button id="run5" onclick="runCode('code5', 'output5')" disabled>Executar</button>
+        <div id="output5" class="output"></div>
+
+        <h2>6. Manipulação de Arquivos (Simulado)</h2>
+        <p>No navegador, simulamos com prints.</p>
+        <pre><code>conteudo = "Olá!"
+print("Escrevendo no arquivo:", conteudo)</code></pre>
+        <h3>Atividade: Simule escrita</h3>
+        <textarea id="code6">print("Simulando escrita no arquivo: 'Conteúdo salvo!'")</textarea>
+        <button id="run6" onclick="runCode('code6', 'output6')" disabled>Executar</button>
+        <div id="output6" class="output"></div>
+
+        <h2>7. Orientação a Objetos</h2>
+        <p>Exemplo de classe:</p>
+        <pre><code>class Pessoa:
+    def __init__(self, nome):
+        self.nome = nome
+    
+    def falar(self):
+        print(f"Olá, sou {self.nome}")
+
+p = Pessoa("Ana")
+p.falar()</code></pre>
+        <h3>Atividade: Classe Carro</h3>
+        <textarea id="code7">class Carro:
+    def __init__(self, cor):
+        self.cor = cor
+    
+    def descrever(self):
+        print(f"Este carro é da cor {self.cor}")
+
+meu_carro = Carro("azul")
+meu_carro.descrever()</textarea>
+        <button id="run7" onclick="runCode('code7', 'output7')" disabled>Executar</button>
+        <div id="output7" class="output"></div>
+
+        <h2>8. Módulos (math)</h2>
+        <p>Exemplo:</p>
+        <pre><code>import math
+print(math.sqrt(16))</code></pre>
+        <h3>Atividade: Use math</h3>
+        <textarea id="code8">import math
+print(math.pi)
+print(math.cos(0))</textarea>
+        <button id="run8" onclick="runCode('code8', 'output8')" disabled>Executar</button>
+        <div id="output8" class="output"></div>
+
+        <h2>9. Questionário Final</h2>
+        <p>Teste seus conhecimentos! Responda as perguntas abaixo e clique em "Enviar Respostas" no final para ver sua pontuação. Sem feedbacks parciais ou tentativas extras.</p>
+
+        <div class="quiz-question">
+            <h3>Pergunta 1: Múltipla Escolha - Qual é a saída de print("Olá" + " Mundo!")?</h3>
+            <div class="multiple-choice">
+                <label><input type="radio" name="q1" value="a"> a) OláMundo!</label>
+                <label><input type="radio" name="q1" value="b"> b) Olá Mundo!</label>
+                <label><input type="radio" name="q1" value="c"> c) Erro</label>
+            </div>
+            <div id="feedback1" class="feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+            <h3>Pergunta 2: Código - Escreva uma função que retorne a soma de 2 e 3 (deve imprimir 5)</h3>
+            <textarea id="quiz-code1">def soma():
+    # Seu código aqui
+    pass
+
+print(soma())</textarea>
+            <div id="quiz-output1" class="output"></div>
+            <div id="quiz-feedback1" class="feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+            <h3>Pergunta 3: Múltipla Escolha - O que faz list.append()?</h3>
+            <div class="multiple-choice">
+                <label><input type="radio" name="q3" value="a"> a) Remove um item</label>
+                <label><input type="radio" name="q3" value="b"> b) Adiciona um item no final</label>
+                <label><input type="radio" name="q3" value="c"> c) Ordena a lista</label>
+            </div>
+            <div id="feedback3" class="feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+            <h3>Pergunta 4: Código - Crie uma classe Animal com método som() que imprima "Som genérico"</h3>
+            <textarea id="quiz-code2">class Animal:
+    def __init__(self):
+        pass
+    
+    def som(self):
+        # Seu código aqui
+        pass
+
+a = Animal()
+a.som()</textarea>
+            <div id="quiz-output2" class="output"></div>
+            <div id="quiz-feedback2" class="feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+            <h3>Pergunta 5: Múltipla Escolha - Qual módulo é usado para matemática avançada?</h3>
+            <div class="multiple-choice">
+                <label><input type="radio" name="q5" value="a"> a) random</label>
+                <label><input type="radio" name="q5" value="b"> b) math</label>
+                <label><input type="radio" name="q5" value="c"> c) os</label>
+            </div>
+            <div id="feedback5" class="feedback"></div>
+        </div>
+
+        <button id="submit-quiz" onclick="submitQuiz()" disabled>Enviar Respostas</button>
+        <div id="quiz-result"></div>
+
+        <p><strong>Parabéns por chegar ao fim!</strong> Envie suas respostas para ver o resultado.</p>
+    </div>
+
+    <script type="text/javascript">
+        let pyodideReady = false;
+        let pyodide;
+
+        async function initializePyodide() {
+            const btn = document.getElementById('init-btn');
+            const status = document.getElementById('status');
+            btn.disabled = true;
+            btn.textContent = 'Carregando...';
+            status.textContent = 'Baixando e inicializando Python (pode demorar 10-20s na primeira vez)';
+            status.className = 'loading';
+
+            try {
+                pyodide = await loadPyodide({
+                    indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.2/full/"
+                });
+                pyodideReady = true;
+                status.innerHTML = '<span class="success">✅ Python carregado! Agora execute os códigos abaixo.</span>';
+                document.querySelectorAll('button[id^="run"]').forEach(btn => btn.disabled = false);
+                document.getElementById('submit-quiz').disabled = false;
+                document.getElementById('init-section').style.display = 'none';
+            } catch (err) {
+                status.innerHTML = '<span class="error">❌ Erro: ' + err.message + '. Tente recarregar a página.</span>';
+                btn.disabled = false;
+                btn.textContent = 'Tentar Novamente';
+            }
+        }
+
+        async function runCode(codeId, outputId) {
+            if (!pyodideReady) {
+                alert('Carregue o Python primeiro!');
+                return;
+            }
+
+            const code = document.getElementById(codeId).value;
+            const outputDiv = document.getElementById(outputId);
+            outputDiv.innerHTML = '<span class="loading">Executando...</span>';
+
+            try {
+                pyodide.runPython(`
+import sys
+import io
+sys.stdout = io.StringIO()
+                `);
+
+                await pyodide.runPythonAsync(code);
+
+                const stdout = pyodide.runPython('sys.stdout.getvalue()');
+
+                pyodide.runPython('sys.stdout = sys.__stdout__');
+
+                if (stdout.trim()) {
+                    outputDiv.innerHTML = stdout.replace(/\n/g, '<br>');
+                } else {
+                    outputDiv.innerHTML = '<em>(Nenhuma saída de print)</em>';
+                }
+            } catch (err) {
+                pyodide.runPython('sys.stdout = sys.__stdout__');
+                outputDiv.innerHTML = '<span class="error">Erro: ' + err.message + '</span>';
+            }
+        }
+
+        async function getQuizCodeOutput(codeId) {
+            if (!pyodideReady) {
+                return { success: false, message: 'Python não carregado' };
+            }
+
+            const code = document.getElementById(codeId).value;
+
+            try {
+                pyodide.runPython(`
+import sys
+import io
+sys.stdout = io.StringIO()
+                `);
+
+                await pyodide.runPythonAsync(code);
+
+                let stdout = pyodide.runPython('sys.stdout.getvalue()');
+
+                pyodide.runPython('sys.stdout = sys.__stdout__');
+
+                return { success: true, stdout: stdout.trim() };
+            } catch (err) {
+                pyodide.runPython('sys.stdout = sys.__stdout__');
+                return { success: false, message: err.message };
+            }
+        }
+
+        async function submitQuiz() {
+            if (!pyodideReady) {
+                alert('Carregue o Python primeiro!');
+                return;
+            }
+
+            const submitBtn = document.getElementById('submit-quiz');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Avaliando...';
+
+            let score = 0;
+            const total = 5;
+
+            // Pergunta 1 (MC)
+            const q1Selected = document.querySelector('input[name="q1"]:checked');
+            if (q1Selected && q1Selected.value === 'b') {
+                score++;
+            }
+
+            // Pergunta 2 (Code)
+            const q2Result = await getQuizCodeOutput('quiz-code1');
+            if (q2Result.success && q2Result.stdout === '5') {
+                score++;
+            }
+
+            // Pergunta 3 (MC)
+            const q3Selected = document.querySelector('input[name="q3"]:checked');
+            if (q3Selected && q3Selected.value === 'b') {
+                score++;
+            }
+
+            // Pergunta 4 (Code)
+            const q4Result = await getQuizCodeOutput('quiz-code2');
+            if (q4Result.success && q4Result.stdout === 'Som genérico') {
+                score++;
+            }
+
+            // Pergunta 5 (MC)
+            const q5Selected = document.querySelector('input[name="q5"]:checked');
+            if (q5Selected && q5Selected.value === 'b') {
+                score++;
+            }
+
+            const resultDiv = document.getElementById('quiz-result');
+            resultDiv.innerHTML = `Você acertou ${score} de ${total} perguntas!`;
+
+            submitBtn.textContent = 'Respostas Enviadas';
+        }
+    </script>
+</body>
+</html>
