@@ -141,17 +141,6 @@
             box-shadow: 0 10px 30px rgba(255, 193, 7, 0.4);
         }
 
-        /* Links dentro dos botões */
-        button a {
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-        }
-
         /* Link de voltar com animação */
         .back-link {
             margin-top: 30px;
@@ -215,41 +204,12 @@
         <p>Confira os melhores sites oficiais e gratuitos para aprender Python e JavaScript:</p>
 
         <div class="buttons">
-            <button id="python-btn">
-                <a href="https://www.python.org/" target="_blank" rel="noopener">
-                    Site Oficial do Python
-                </a>
-            </button>
-
-            <button id="js-btn">
-                <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank" rel="noopener">
-                    Documentação JavaScript (MDN)
-                </a>
-            </button>
-
-            <button>
-                <a href="https://docs.python.org/pt-br/3/tutorial/index.html" target="_blank" rel="noopener">
-                    Tutorial Oficial do Python (PT-BR)
-                </a>
-            </button>
-
-            <button>
-                <a href="https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/" target="_blank" rel="noopener">
-                    Curso Gratuito JS - freeCodeCamp
-                </a>
-            </button>
-
-            <button>
-                <a href="https://www.w3schools.com/python/" target="_blank" rel="noopener">
-                    Python no W3Schools
-                </a>
-            </button>
-
-            <button>
-                <a href="https://www.w3schools.com/js/" target="_blank" rel="noopener">
-                    JavaScript no W3Schools
-                </a>
-            </button>
+            <button id="python-btn" onclick="window.open('https://www.python.org/', '_blank')">Site Oficial do Python</button>
+            <button id="js-btn" onclick="window.open('https://developer.mozilla.org/pt-BR/docs/Web/JavaScript', '_blank')">Documentação JavaScript (MDN)</button>
+            <button onclick="window.open('https://docs.python.org/pt-br/3/tutorial/index.html', '_blank')">Tutorial Oficial do Python (PT-BR)</button>
+            <button onclick="window.open('https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/', '_blank')">Curso Gratuito JS - freeCodeCamp</button>
+            <button onclick="window.open('https://www.w3schools.com/python/', '_blank')">Python no W3Schools</button>
+            <button onclick="window.open('https://www.w3schools.com/js/', '_blank')">JavaScript no W3Schools</button>
         </div>
 
         <div class="back-link">
